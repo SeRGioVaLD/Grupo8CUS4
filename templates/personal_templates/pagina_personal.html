@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  PERSONAL - CONDOSA
+{% endblock %}
+
+{% block body %}
+  {% include 'personal_templates/personal_partials/_personal_partial.html' %}
+  <button type="button" class="btn btn-primary" onclick="goBack()">REGRESAR</button>
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>  
+{% endblock %}

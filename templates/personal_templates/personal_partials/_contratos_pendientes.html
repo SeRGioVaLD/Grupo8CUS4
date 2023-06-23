@@ -1,0 +1,34 @@
+<table class="table table-hover table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ID CONTRATO</th>
+      <th scope="col">ID COTIZACION</th>
+      <th scope="col">F. CREACION</th>
+      <th scope="col">F. FIRMA SOLI.</th>
+      <th scope="col">ACCION</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for contrato in contratos_pendientes %}
+      <tr>
+        <td>
+          {{contrato.id_contrato}}
+        </td>
+        <td>
+          {{contrato.id_solicitud_cotizacion}}
+        </td>
+        <td>
+          {{contrato.fecha_contrato}}
+        </td>
+        <td>
+          {{contrato.fecha_firma_solicitante}}
+        </td>
+        <td>
+          <form action="{{url_for('routes.firmar_contrato',id = contrato.id_personal, id_contrato = contrato.id_contrato)}}" method="POST" >
+            <button type="submit" class="btn btn-primary">FIRMAR</button>
+          </form>
+        </td>
+      </tr>  
+    {% endfor %}
+  </tbody>
+</table>

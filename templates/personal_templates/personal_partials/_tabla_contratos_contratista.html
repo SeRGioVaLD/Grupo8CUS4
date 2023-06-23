@@ -1,0 +1,54 @@
+<div class = "caja_tabla_util">
+    <table class="tabla_contratos_contratista">
+        <tr class="tabla_head">
+            <th class="col_cab1">
+                ID
+            </th>
+            <th class="col_cab1">
+                SOLICITANTE
+            </th>
+            <th class="col_cab1">
+                F. FIR. SOLI.
+            </th>
+            <th class="col_cab1">
+                F. REGISTRO
+            </th>
+            <th class="col_cab1">
+                OPCION
+            </th>
+        </tr>
+        {% for contrato in contratos %}
+            <tr class="tabla_row " >
+                <td class="col_row1">
+                    {{contrato.id_contrato}}
+                </td>
+                <td class="col_row1">
+                    {{contrato.id_personal}}
+                </td>
+                <td class="col_row1">
+                    {{contrato.fecha_contrato}}
+                </td >
+                <td class="col_row1">
+                    {{contrato.fecha_registro}}
+                </td >
+                <td class="col_row2">
+                    {% if contrato.fecha_firma_personal is none %}
+                            <form 
+                            action="{{url_for('contratos.firmar_contrato_contratista',codigo=codigo)}}" 
+                            method="POST" 
+                            style="display: inline;">
+                            <button type="submit" class="btn btn-dark btn-sm rounded-0">FIRMAR</button>
+                        </form>
+                    {% else %}
+                        <form 
+                            action="{{url_for('contratos.descargar_contrato_contratista',codigo=codigo)}}" 
+                            method="POST" 
+                            style="display: inline;">
+                            <button type="submit" class="btn btn-dark btn-sm rounded-0">DESCARGAR</button>
+                        </form>
+                    {% endif %} 
+                </td>
+            </tr>  
+        {% endfor %}
+    </table>
+</div>

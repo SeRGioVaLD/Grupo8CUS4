@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+  CONTRATO - FIRMA - CONDOSA
+{% endblock %}
+
+{% block body %}
+  {% include 'contrato_templates/contrato_partials/_contrato_partial.html' %}
+  {% include 'contrato_templates/contrato_partials/_bajo_contrato_partial.html' %}
+  <button type="button" class="btn btn-primary" onclick="goBack()">REGRESAR</button>
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script> 
+{% endblock %}

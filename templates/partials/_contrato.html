@@ -1,0 +1,154 @@
+<div class="contrato_caja">
+  <p class="titulo">
+    CONTRATO DE PRESTACION DE<br>
+    SERVICIOS DE ADMINISTRACION - CONDOSA<br>
+    <br>
+  </p>
+  <p> 
+    Entre la empresa: 
+    <input id="nompredio" value="{{predio.nompredio}}"  readonly> ,
+  
+    representada en este acto por: 
+    <input id="nom_completo_solicitante" value="{{solicitante.appaterno}} {{solicitante.apmaterno}}, {{solicitante.nombres}}" readonly> ,
+    
+    identificado con el DNI: 
+    <input id="num_dni_solicitante" value="{{solicitante.numdni}}" readonly> ,
+    
+    en su carácter de 
+    <span class="negrita">PRESIDENTE DE LA JUNTA DE PROPIETARIOS DE</span>
+    <input id="nom_predio" value="{{predio.nompredio}}" readonly> ,
+
+    en lo sucesivo 
+    <span class="negrita">"LA EMPRESA CONTRATANTE"</span>, 
+
+    y la empresa 
+    <span class="negrita">CONDOSA</span>,
+
+    representada en este acto por 
+    <input id="nom_completo_contratista" value="{{contratista.appaterno}} {{contratista.apmaterno}}, {{contratista.nombres}}" readonly> ,
+    
+    identificado con el DNI: 
+    <input id="num_dni_contratista" value="{{contratista.numdni}}" readonly> ,
+
+    en su carácter de 
+    <span class="negrita">"ENCARGADO DE CONTRATO"</span>, 
+
+    en lo sucesivo 
+    <span class="negrita">"LA EMPRESA CONTRATISTA"</span>, 
+
+    se celebra el presente contrato de prestación de servicios administrativos, 
+    al tenor de las siguiente cláusulas:
+  </p>
+
+
+  <p>
+      <P class="text_ind1">
+        1. Teniendo en cuenta la solicitud 
+        <input id="id_solicitud" value="{{solicitud.idsolicitud}}" readonly> ,
+        realizada el 
+        <input id="fechasoli" value="{{solicitud.fechasolicitud}}" readonly> ,
+        que contempla la realización de los siguientes servicios:<br>
+        <P class="text_ind2">
+          1.1. Servicio de Administracion<br>
+          1.2. Servicio de Mantenimiento<br>
+          1.3. Servicio de Seguridad<br>
+        </P>
+      </P>
+
+      <P class="text_ind1">
+        2. Contando con los siguientes datos:
+        <P class="text_ind2">
+          2.1. Datos del predio:<br>
+
+          <P class="text_ind3">
+            2.1.1. Nombre del predio:
+            <input id="nom_predio" value="{{predio.nompredio}}" readonly><br>
+            2.1.2. Tipo de predio:
+            <input id="tipo_predio" value="{{predio.tipo}}" readonly><br>
+            2.1.3. Area del predio:
+            <input id="area_predio" value="{{predio.area}} m2" readonly><br>
+            2.1.4. Numero de accesos:
+            <input id="accesos_predio" value="{{predio.numaccesos}}" readonly><br>
+            2.1.5. Numero de casas:
+            <input id="casas_predio" value="{{predio.numcasas}}" readonly><br>
+            2.1.6. Dimension de las areas comunes:
+            <input id="comunes_predio" value="{{predio.dimareascomm}} m2" readonly><br>
+            2.1.7. Presentando ciertas caracteristicas como:
+            <textarea readonly class="custom-textarea" >
+              {{predio.caracsiyse }}
+            </textarea><br>
+          </P>
+        </P>
+
+        <p class="text_ind2">
+          2.2. Datos de personal:<br>
+
+          <P class="text_ind3">
+            <div class="caja_tabla">
+              <table class="table_trabajadores">
+                            
+                <tr class="table_head">
+                  <th class="idtrabajador">
+                      CODIGO
+                  </th>
+                  <th class="appaterno">
+                      AP. PATERNO
+                  </th>
+                  <th class="apmaterno">
+                      AP. MATERNO
+                  </th>
+                  <th class="nombres">
+                      NOMBRES
+                  </th>
+                </tr>
+  
+                {% for trabajador in trabajadores %}
+                  <tr class="table_row " >
+                      <td class="id_col">
+                          {{ trabajador.idtrabajador}}
+                      </td>
+                      <td class="appater_col">
+                          {{ trabajador.appaterno}}
+                      </td>
+                      <td class="apmater_col">
+                          {{ trabajador.apmaterno}}
+                      </td >
+                      <td class="nombres_col">
+                          {{ trabajador.nombres}}
+                      </td>
+                  </tr>    
+                {% endfor %}
+              </table>
+            </div>
+          </P>
+        </p>
+      </P>
+
+      <P class="text_ind1">
+        3. Aceptando la cotizacion por el valor de
+        <input id="cotizacion" value="S/.{{cotizacion.monto}}" readonly> ,
+        realizada y, teniendo en cuenta que el contrato tenda una duracion que va
+        desde el
+        <input id="inicio" value="{{solicitud.fechainicioservicio}}" readonly> ,
+        hasta el 
+        <input id="fin" value="{{solicitud.fechafinservicio}}" readonly> ,
+        y aceptando los
+        <span class="negrita">TERMINOS Y CONDICIONES</span>
+        expecificados por la empresa 
+        <span class="negrita">CONDOSA</span>,
+      </P>
+  </p>
+
+
+
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const inputs = document.querySelectorAll('input[readonly]');
+      inputs.forEach(input => {
+        input.style.width = (input.value.length+1) + 'ch';
+      });
+    });
+  </script>
+    
+  
+</div>

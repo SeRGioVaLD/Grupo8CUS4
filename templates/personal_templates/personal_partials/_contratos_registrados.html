@@ -1,0 +1,34 @@
+<table class="table table-hover table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ID CONTRATO</th>
+      <th scope="col">ID PERSONAL</th>
+      <th scope="col">ID SOLICITANTE</th>
+      <th scope="col">F. REGISTRO</th>
+      <th scope="col">ACCION</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for contrato in contratos_registrados %}
+      <tr>
+        <td>
+          {{contrato.id_contrato}}
+        </td>
+        <td>
+          {{contrato.id_personal}}
+        </td>
+        <td>
+          {{contrato.id_solicitante}}
+        </td>
+        <td>
+          {{contrato.fecha_registro}}
+        </td>
+        <td>
+          <form >
+            <button type="button" class="btn btn-primary">DESCARGAR</button>
+          </form>
+        </td>
+      </tr>  
+    {% endfor %}
+  </tbody>
+</table>
