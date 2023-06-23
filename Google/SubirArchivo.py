@@ -1,8 +1,9 @@
 from googleapiclient.http import MediaFileUpload
-from Google import Create_Service, getCarpetID
+from Google.Google import Create_Service, getCarpetID
 
 def subir_archivo(carpeta):
     CLIENT_SECRET_FILE = "client_secret.json"
+    
     API_NAME = "drive"
     API_VERSION = "v3"
     SCOPES = ["https://www.googleapis.com/auth/drive"]
@@ -11,7 +12,7 @@ def subir_archivo(carpeta):
 
     folder_id = getCarpetID( CLIENT_SECRET_FILE,  SCOPES, carpeta)
     file_names = ["nombre del archivo"]
-    mime_types = ["image/jpeg   <-- en el caso de que se una imagen"]
+    mime_types = ["image/*   <-- en el caso de que se una imagen"]
 
     for file_name, mime_type in zip(file_names, mime_types):
         file_metadata = {

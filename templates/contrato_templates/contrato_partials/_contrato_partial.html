@@ -170,7 +170,7 @@
                 </P>
             </P>  
         </P>
-
+        
         <P class="text_ind1">
             3. Por ultimo, siendo que el cliente acepte los 
             <input class="linea-texto" value="TERMINOS Y CONDICIONES" readonly> 
@@ -178,6 +178,8 @@
             <input class="linea-texto" value="CONDOSA" readonly> 
         </P>
     </p>
+
+    {% include 'contrato_templates/contrato_partials/_datos_firmantes_partial.html' %}
 
     <script>
         window.addEventListener('DOMContentLoaded', () => {
@@ -187,5 +189,7 @@
             });
         });
     </script>
+
+    
     
 </div>

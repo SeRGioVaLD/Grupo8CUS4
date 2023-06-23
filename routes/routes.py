@@ -17,6 +17,8 @@ from models.contrato import Contrato
 from datetime import datetime
 
 from Google.Carpetas import crear_carpeta
+from Google.CargarDatosContrato import obtener_links
+
 
 from utils.db import db
 
@@ -26,6 +28,9 @@ routes.secret_key = 'clave_secreta'
 
 @routes.route('/')
 def index():
+    
+    
+    
     return render_template('index.html')   
         
 @routes.route('/usuario', methods=['POST'])
@@ -45,6 +50,7 @@ def personal(id):
 def contratos(id):
     id_personal = int(id)
     
+    
     cotizaciones = Solicitud_Cotizacion.query.filter(
         Solicitud_Cotizacion.id_personal == id_personal,
         ~Solicitud_Cotizacion.id_solicitud_cotizacion.in_(
@@ -54,12 +60,14 @@ def contratos(id):
         (Solicitud_Cotizacion.id_estado == None)
     ).all()
     
+    
     contratos_pendientes = Contrato.query.filter(
         Contrato.id_personal == id_personal,
         Contrato.fecha_contrato != None,
         Contrato.fecha_firma_solicitante != None,
         Contrato.fecha_firma_personal == None,
     ).all()
+    
     
     contratos_registrados = Contrato.query.filter(
         Contrato.id_personal == id_personal,
@@ -68,6 +76,8 @@ def contratos(id):
         Contrato.fecha_firma_personal != None,
         Contrato.fecha_registro != None,
     ).all()
+    
+    print("CONTRATOS_REGISTRADOS: ",contratos_registrados)
     
     return render_template(
         'personal_templates/contratos_personal.html',
@@ -84,6 +94,7 @@ def crear_contrato(id,id_solicitud_cotizacion):
     print("id->",id)
     print("id_solicitud_cotizacion->",id_solicitud_cotizacion)
 
+    
     cotizacion = Solicitud_Cotizacion.query.filter(
         Solicitud_Cotizacion.id_solicitud_cotizacion == id_solicitud_cotizacion
     ).all()
@@ -96,6 +107,10 @@ def crear_contrato(id,id_solicitud_cotizacion):
     id_personal = id
     id_solicitante = solicitud[0].id_solicitante
     
+    nombre_carpeta = "contrato-"+str(id_solicitud_cotizacion)+"-"+str(id_personal)+"-"+str(id_solicitante)    
+    crear_carpeta(nombre_carpeta)
+    
+    
     contrato = Contrato(id_solicitud_cotizacion,
                         id_personal,
                         id_solicitante,
@@ -106,6 +121,7 @@ def crear_contrato(id,id_solicitud_cotizacion):
                         None)
     db.session.add(contrato)
     db.session.commit()
+    
     
     return redirect(url_for('routes.contratos', id=id))
 
@@ -156,6 +172,10 @@ def firmar_contrato(id,id_contrato):
     rol_solicitante = Rol.query.get(solicitante.id_rol)
     tipo_documento_solicitante = Tipo_Documento.query.get(persona_solicitante.id_tipo_documento)
     
+    nombre_carpeta = "contrato-"+str(cotizacion.id_solicitud_cotizacion)+"-"+str(personal.id_personal)+"-"+str(solicitante.id_solicitante)    
+    
+    firma_solicitante_link,huella_solicitante_link,firma_personal_link,huella_personal_link = obtener_links(nombre_carpeta)
+    
     return render_template(
         'contrato_templates/contrato.html',
         id=id,
@@ -177,5 +197,10 @@ def firmar_contrato(id,id_contrato):
         
         persona_solicitante = persona_solicitante,
         rol_solicitante = rol_solicitante,
-        tipo_documento_solicitante = tipo_documento_solicitante
+        tipo_documento_solicitante = tipo_documento_solicitante,
+        
+        firma_solicitante_link = firma_solicitante_link,
+        huella_solicitante_link = huella_solicitante_link,
+        firma_personal_link = firma_personal_link,
+        huella_personal_link = huella_personal_link
     )
