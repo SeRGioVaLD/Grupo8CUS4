@@ -1,0 +1,62 @@
+# Grupo8CUSFirmarContrato
+1. instale entorno virtual con:
+      - virtualenv venv
+2. intale framework Flask con:
+      - pip install
+3. instale los requerimientos
+      - pip install Flask-SQLAlchemy
+      - pip install psycopg2
+      - pip install autopep8
+      - pip install toml
+      - pip install python-dotenv
+      - pip install dataclasses
+      - pip install google-auth-oauthlib
+      - pip install google-api-python-client
+4. cree y configure el archivo .env:
+      - USER = modulo4
+      - PASSWORD = modulo4
+      - DATABASE = sigcon 
+      - HOST = 137.184.120.127
+      - SERVER = postgresql
+5. Lista de requerimientos:
+      - autopep8==2.0.2
+      - blinker==1.6.2
+      - cachetools==5.3.1
+      - certifi==2023.5.7
+      - charset-normalizer==3.1.0
+      - click==8.1.3
+      - colorama==0.4.6
+      - dataclasses==0.6
+      - Flask==2.3.2
+      - Flask-SQLAlchemy==3.0.5
+      - google-api-core==2.11.1
+      - google-api-python-client==2.90.0
+      - google-auth==2.20.0
+      - google-auth-httplib2==0.1.0
+      - google-auth-oauthlib==1.0.0
+      - googleapis-common-protos==1.59.1
+      - greenlet==2.0.2
+      - httplib2==0.22.0
+      - idna==3.4
+      - itsdangerous==2.1.2
+      - Jinja2==3.1.2
+      - MarkupSafe==2.1.3
+      - oauth2client==4.1.3
+      - oauthlib==3.2.2
+      - protobuf==4.23.3
+      - psycopg2==2.9.6
+      - pyasn1==0.5.0
+      - pyasn1-modules==0.3.0
+      - pycodestyle==2.10.0
+      - pyparsing==3.1.0
+      - python-dotenv==1.0.0
+      - requests==2.31.0
+      - requests-oauthlib==1.3.1
+      - rsa==4.9
+      - six==1.16.0
+      - SQLAlchemy==2.0.16
+      - toml==0.10.2
+      - typing_extensions==4.6.3
+      - uritemplate==4.1.1
+      - urllib3==1.26.16
+      - Werkzeug==2.3.6
