@@ -1,0 +1,22 @@
+<table class="table table-hover table-bordered">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ID COTIZACION</th>
+      <th scope="col">ACCION</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for cotizacion in cotizaciones %}
+      <tr>
+        <td>
+          {{cotizacion.id_solicitud_cotizacion}}
+        </td>
+        <td>
+          <form action="{{url_for('routes.crear_contrato',id = cotizacion.id_personal, id_solicitud_cotizacion = cotizacion.id_solicitud_cotizacion)}}" method="POST">
+            <button type="submit" class="btn btn-primary">CREAR</button>
+          </form>
+        </td>
+      </tr>  
+    {% endfor %}
+  </tbody>
+</table>
